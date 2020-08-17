@@ -20,10 +20,12 @@ void PrintFieldPlayerDefense();
 void ChoosePos();
 extern char PlayerDefense[100][100];
 extern char PlayerAttack[100][100];
+void ShootInPlayer(ll x, ll y, char PD[100][100], char PA[100][100], bool bot);
 
 ll cordx = 1, cordy = 1;
 
 void GAME() {
+	fastio;
 	Generate();
 	//ShootInPlayer(1, 1, PlayerDefense, PlayerAttack, false);
 	PrintFieldPlayerDefense();

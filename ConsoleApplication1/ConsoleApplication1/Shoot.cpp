@@ -107,99 +107,16 @@ void ShootInPlayer(ll x, ll y, char PD[100][100], char PA[100][100], bool bot = 
 	if (bot == false) {
 		rep(i, 1, 22) {
 			rep(j, 1, 22) {
-				PlayerAttack[i][j] = PA[x][y];
+				PlayerAttack[i][j] = PA[i][j];
 			}
 		}
 	}
 	else {
 		rep(i, 1, 22) {
 			rep(j, 1, 22) {
+				cendl(-2);
 				BotAttack[i][j] = PA[x][y];
 			}
 		}
-	}
-}
-
-void ShootInBot(int x, int y) {
-	if (BotDefense[x][y] >= '1' && BotDefense[x][y] <= '4') {
-		if (BotDefense[x][y] == '1') {
-			KolSheepsPlayer--;
-		}
-		else if (BotDefense[x][y] >= '2') {
-			i = 0;
-			j = 0;
-			Length = 0;
-			Kill = 0;
-			if (BotDefense[x - 1][y] >= '2' || BotDefense[x - 1][y] == 'x' || BotDefense[x + 1][y] >= '2' || BotDefense[x + 1][y] == 'x') {
-				i = x;
-				while (BotDefense[i][y] >= '2' || BotDefense[i][y] == 'x') {
-					Length++;
-					if (BotDefense[i][y] == 'x') {
-						Kill++;
-					}
-					i--;
-				}
-				i = x + 1;
-				while (BotDefense[i][y] >= '2' || BotDefense[i][y] == 'x') {
-					Length++;
-					if (BotDefense[i][y] == 'x') {
-						Kill++;
-					}
-					i++;
-				}
-
-				if (Kill == Length) {
-					KolSheepsPlayer--;
-					i = x + 1;
-					while (BotDefense[i][y] >= '2' || BotDefense[i][y] == 'x') {
-						i--;
-						BotDefense[i][y - 1] = '~';
-						BotDefense[i][y + 1] = '~';
-					}
-					i = x - 1;
-					while (BotDefense[i][y] >= '2' || BotDefense[i][y] == 'x') {
-						i++;
-						BotDefense[i][y - 1] = '~';
-						BotDefense[i][y + 1] = '~';
-					}
-				}
-			}
-			else if (BotDefense[x][y - 1] >= '2' || BotDefense[x][y - 1] == 'x' || BotDefense[x][y + 1] >= '2' || BotDefense[x][y + 1] == 'x') {
-				i = x;
-				j = y;
-				while (BotDefense[i][j] >= '2' || BotDefense[i][j] == 'x') {
-					Length++;
-					if (BotDefense[i][j] == 'x') {
-						Kill++;
-					}
-					j--;
-				}
-				j = y + 1;
-				while (BotDefense[i][j] >= '2' || BotDefense[i][j] == 'x') {
-					Length++;
-					if (BotDefense[i][j] == 'x') {
-						Kill++;
-					}
-					i++;
-				}
-				if (Kill == Length) {
-					KolSheepsPlayer--;
-					i = x;
-					j = y + 1;
-					while (BotDefense[i][j] >= '2' || BotDefense[i][j] == 'x') {
-						j--;
-						BotDefense[i - 1][j] = '~';
-						BotDefense[i + 1][j] = '~';
-					}
-					j = y - 1;
-					while (BotDefense[i][j] >= '2' || BotDefense[i][j] == 'x') {
-						j++;
-						BotDefense[i - 1][j] = '~';
-						BotDefense[i + 1][j] = '~';
-					}
-				}
-			}
-		}
-		BotDefense[x][y] = 'x';
 	}
 }

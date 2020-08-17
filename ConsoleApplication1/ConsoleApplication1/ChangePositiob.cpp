@@ -28,30 +28,34 @@
 using namespace std;
 extern char PlayerDefense[100][100];
 extern char PlayerAttack[100][100];
+extern char BotDefense[100][100];
+extern char BotAttack[100][100];
 void ShootInPlayer(ll x, ll y, char PD[100][100], char PA[100][100], bool bot);
 extern char ch;
 extern ll cordx, cordy;
 extern int i, j;
+void PrintFieldPlayerDefense();
 
 void ChoosePos() {
     while (true) {
         ch = getch();
+        
         if (ch == 'q' || ch == 'Q') {
-            cout << cordx << ' ' << cordy << endl;
-            ShootInPlayer(1, 1, PlayerDefense, PlayerAttack, false);
+            ShootInPlayer(cordx, cordy, BotDefense, PlayerAttack, false);
             break;
         }
-        if (ch == 'W' || ch == 'w') {
-            cordx--;
+        else if (ch == 'W' || ch == 'w') {
+            cordx = max(1, cordx - 1);
         }
-        if (ch == 'D' || ch == 'd') {
-            cordy++;
+        else if (ch == 'D' || ch == 'd') {
+            cordy = min(9, cordy + 1 - 1 + 1);
         }
-        if (ch == 'S' || ch == 's') {
-            cordx++;
+        else if (ch == 'S' || ch == 's') {
+            cordx = min(9, cordx + 1);
         }
-        if (ch == 'A' || ch == 'a') {
-            cordy--;
+        else if (ch == 'A' || ch == 'a') {
+            cordy = max(1, cordy - 1);
         }
+        cout << cordx << ' ' << cordy << endl;
     }
 }
