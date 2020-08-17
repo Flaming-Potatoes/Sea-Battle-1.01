@@ -17,10 +17,18 @@ const int iinf = (int)1e9 + 111;
 
 void Generate();
 void PrintFieldPlayerDefense();
+void ChoosePos();
+extern char PlayerDefense[100][100];
+extern char PlayerAttack[100][100];
 
-ll cordx, cordy;
+ll cordx = 1, cordy = 1;
 
 void GAME() {
 	Generate();
+	//ShootInPlayer(1, 1, PlayerDefense, PlayerAttack, false);
 	PrintFieldPlayerDefense();
+	while (true) {
+		ChoosePos();
+		PrintFieldPlayerDefense();
+	}
 }

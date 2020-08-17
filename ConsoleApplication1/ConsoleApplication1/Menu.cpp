@@ -16,7 +16,7 @@ const long long inf = (long long)1e18 + 111;
 const int iinf = (int)1e9 + 111;
 
 char c = 'w';
-extern char ch;
+char ch;
 bool ind = 1;
 // Generate Field 
 int w, x, y, xx, yy, k, savex, savey, nap, j, i;

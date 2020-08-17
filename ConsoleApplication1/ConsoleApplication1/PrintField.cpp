@@ -21,6 +21,7 @@ extern char PlayerDefense[100][100];
 extern char PlayerAttack[100][100];
 int Number;
 extern int i, j;
+extern ll cordx, cordy;
 
 void PrintFieldPlayer() {
     rep(i, 1, 15) {

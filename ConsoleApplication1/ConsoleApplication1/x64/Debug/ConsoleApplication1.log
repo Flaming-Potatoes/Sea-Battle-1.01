@@ -1,3 +1,12 @@
-﻿  Menu.cpp
-D:\Programming\ConsoleApplication1\ConsoleApplication1\Menu.cpp(14,34): warning C4081: требуется "newline"; обнаружен ";"
+﻿  Shoot.cpp
+D:\Programming\ConsoleApplication1\ConsoleApplication1\Shoot.cpp(33,9): warning C4244: =: преобразование "__int64" в "int", возможна потеря данных
+D:\Programming\ConsoleApplication1\ConsoleApplication1\Shoot.cpp(41,11): warning C4244: =: преобразование "__int64" в "int", возможна потеря данных
+D:\Programming\ConsoleApplication1\ConsoleApplication1\Shoot.cpp(52,12): warning C4244: =: преобразование "__int64" в "int", возможна потеря данных
+D:\Programming\ConsoleApplication1\ConsoleApplication1\Shoot.cpp(58,12): warning C4244: =: преобразование "__int64" в "int", возможна потеря данных
+D:\Programming\ConsoleApplication1\ConsoleApplication1\Shoot.cpp(67,9): warning C4244: =: преобразование "__int64" в "int", возможна потеря данных
+D:\Programming\ConsoleApplication1\ConsoleApplication1\Shoot.cpp(68,9): warning C4244: =: преобразование "__int64" в "int", возможна потеря данных
+D:\Programming\ConsoleApplication1\ConsoleApplication1\Shoot.cpp(76,11): warning C4244: =: преобразование "__int64" в "int", возможна потеря данных
+D:\Programming\ConsoleApplication1\ConsoleApplication1\Shoot.cpp(86,10): warning C4244: =: преобразование "__int64" в "int", возможна потеря данных
+D:\Programming\ConsoleApplication1\ConsoleApplication1\Shoot.cpp(87,12): warning C4244: =: преобразование "__int64" в "int", возможна потеря данных
+D:\Programming\ConsoleApplication1\ConsoleApplication1\Shoot.cpp(93,12): warning C4244: =: преобразование "__int64" в "int", возможна потеря данных
   ConsoleApplication1.vcxproj -> D:\Programming\ConsoleApplication1\x64\Debug\ConsoleApplication1.exe

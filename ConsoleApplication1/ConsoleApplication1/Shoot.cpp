@@ -13,33 +13,35 @@
 
 extern char PlayerDefense[100][100];
 extern char BotDefense[100][100];
+extern char PlayerAttack[100][100];
+extern char BotAttack[100][100];
 int KolSheepsPlayer = 10;
 extern int i, j;
 int Length, Kill;
 
-void ShootInPlayer(int x, int y) {
-	if (PlayerDefense[x][y] >= '1' && PlayerDefense[x][y] <= '4') {
-		if (PlayerDefense[x][y] == '1') {
+void ShootInPlayer(ll x, ll y, char PD[100][100], char PA[100][100], bool bot = false) {
+	i = 0;
+	j = 0;
+	Length = 0;
+	Kill = 0;
+	if (PD[x][y] >= '1' && PD[x][y] <= '4') {
+		if (PD[x][y] == '1') {
 			KolSheepsPlayer--;
 		}
-		else if (PlayerDefense[x][y] >= '2') {
-			i = 0;
-			j = 0;
-			Length = 0;
-			Kill = 0;
-			if (PlayerDefense[x - 1][y] >= '2' || PlayerDefense[x - 1][y] == 'x' || PlayerDefense[x + 1][y] >= '2' || PlayerDefense[x + 1][y] == 'x') {
+		else if (PD[x][y] >= '2') {
+			if (PD[x - 1][y] >= '2' || PD[x - 1][y] == 'x' || PD[x + 1][y] >= '2' || PD[x + 1][y] == 'x') {
 				i = x;
-				while (PlayerDefense[i][y] >= '2' || PlayerDefense[i][y] == 'x') {
+				while (PD[i][y] >= '2' || PD[i][y] == 'x') {
 					Length++;
-					if (PlayerDefense[i][y] == 'x') {
+					if (PD[i][y] == 'x') {
 						Kill++;
 					}
 					i--;
 				}
 				i = x + 1;
-				while (PlayerDefense[i][y] >= '2' || PlayerDefense[i][y] == 'x') {
+				while (PD[i][y] >= '2' || PD[i][y] == 'x') {
 					Length++;
-					if (PlayerDefense[i][y] == 'x') {
+					if (PD[i][y] == 'x') {
 						Kill++;
 					}
 					i++;
@@ -48,33 +50,33 @@ void ShootInPlayer(int x, int y) {
 				if (Kill == Length) {
 					KolSheepsPlayer--;
 					i = x + 1;
-					while (PlayerDefense[i][y] >= '2' || PlayerDefense[i][y] == 'x') {
+					while (PD[i][y] >= '2' || PD[i][y] == 'x') {
 						i--;
-						PlayerDefense[i][y - 1] = '~';
-						PlayerDefense[i][y + 1] = '~';
+						PA[i][y - 1] = '~';
+						PA[i][y + 1] = '~';
 					}
 					i = x - 1;
-					while (PlayerDefense[i][y] >= '2' || PlayerDefense[i][y] == 'x') {
+					while (PD[i][y] >= '2' || PD[i][y] == 'x') {
 						i++;
-						PlayerDefense[i][y - 1] = '~';
-						PlayerDefense[i][y + 1] = '~';
+						PA[i][y - 1] = '~';
+						PA[i][y + 1] = '~';
 					}
 				}
 			}
-			else if (PlayerDefense[x][y - 1] >= '2' || PlayerDefense[x][y - 1] == 'x' || PlayerDefense[x][y + 1] >= '2' || PlayerDefense[x][y + 1] == 'x') {
+			else if (PD[x][y - 1] >= '2' || PD[x][y - 1] == 'x' || PD[x][y + 1] >= '2' || PD[x][y + 1] == 'x') {
 				i = x;
 				j = y;
-				while (PlayerDefense[i][j] >= '2' || PlayerDefense[i][j] == 'x') {
+				while (PD[i][j] >= '2' || PD[i][j] == 'x') {
 					Length++;
-					if (PlayerDefense[i][j] == 'x') {
+					if (PD[i][j] == 'x') {
 						Kill++;
 					}
 					j--;
 				}
 				j = y + 1;
-				while (PlayerDefense[i][j] >= '2' || PlayerDefense[i][j] == 'x') {
+				while (PD[i][j] >= '2' || PD[i][j] == 'x') {
 					Length++;
-					if (PlayerDefense[i][j] == 'x') {
+					if (PD[i][j] == 'x') {
 						Kill++;
 					}
 					i++;
@@ -83,21 +85,38 @@ void ShootInPlayer(int x, int y) {
 					KolSheepsPlayer--;
 					i = x;
 					j = y + 1;
-					while (PlayerDefense[i][j] >= '2' || PlayerDefense[i][j] == 'x') {
+					while (PD[i][j] >= '2' || PD[i][j] == 'x') {
 						j--;
-						PlayerDefense[i - 1][j] = '~';
-						PlayerDefense[i + 1][j] = '~';
+						PA[i - 1][j] = '~';
+						PA[i + 1][j] = '~';
 					}
 					j = y - 1;
-					while (PlayerDefense[i][j] >= '2' || PlayerDefense[i][j] == 'x') {
+					while (PD[i][j] >= '2' || PD[i][j] == 'x') {
 						j++;
-						PlayerDefense[i - 1][j] = '~';
-						PlayerDefense[i + 1][j] = '~';
+						PA[i - 1][j] = '~';
+						PA[i + 1][j] = '~';
 					}
 				}
 			}
 		}
-		PlayerDefense[x][y] = 'x';
+		PA[x][y] = 'x';
+	}
+	else {
+		PA[x][y] = '~';
+	}
+	if (bot == false) {
+		rep(i, 1, 22) {
+			rep(j, 1, 22) {
+				PlayerAttack[i][j] = PA[x][y];
+			}
+		}
+	}
+	else {
+		rep(i, 1, 22) {
+			rep(j, 1, 22) {
+				BotAttack[i][j] = PA[x][y];
+			}
+		}
 	}
 }
 
