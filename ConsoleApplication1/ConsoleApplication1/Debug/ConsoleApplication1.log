@@ -1,0 +1,3 @@
+﻿  Menu.cpp
+D:\Programming\ConsoleApplication1\ConsoleApplication1\Menu.cpp(14,34): warning C4081: требуется "newline"; обнаружен ";"
+  ConsoleApplication1.vcxproj -> D:\Programming\ConsoleApplication1\Debug\ConsoleApplication1.exe
