@@ -22,61 +22,67 @@ int Length, Kill;
 void ShootInPlayer(ll x, ll y, char PD[100][100], char PA[100][100], bool bot = false) {
 	i = 0;
 	j = 0;
-	Length = 0;
-	Kill = 0;
+	Length = PD[x][y] - 48;
+	Kill = 1;
+	cendl(PD[x][y]);
 	if (PD[x][y] >= '1' && PD[x][y] <= '4') {
 		if (PD[x][y] == '1') {
-			KolSheepsPlayer--;
+			PA[x][y] == 'q';
+			PA[x - 1][y] == '~';
+			PA[x - 1][y - 1] == '~';
+			PA[x - 1][y + 1] == '~';
+			PA[x + 1][y - 1] == '~';
+			PA[x + 1][y + 1] == '~';
+			PA[x + 1][y] == '~';
 		}
-		else if (PD[x][y] >= '2') {
-			if (PD[x - 1][y] >= '2' || PD[x - 1][y] == 'x' || PD[x + 1][y] >= '2' || PD[x + 1][y] == 'x') {
+		else if (PD[x][y] >= '1') {
+			if (PD[x - 1][y] >= '1' || PD[x + 1][y] >= '1') {
 				i = x;
-				while (PD[i][y] >= '2' || PD[i][y] == 'x') {
-					Length++;
-					if (PD[i][y] == 'x') {
+				while (PD[i][y] >= '1') {
+					if (PA[i][y] == 'x') {
 						Kill++;
 					}
 					i--;
 				}
 				i = x + 1;
-				while (PD[i][y] >= '2' || PD[i][y] == 'x') {
-					Length++;
-					if (PD[i][y] == 'x') {
+				while (PD[i][y] >= '1') {
+					if (PA[i][y] == 'x') {
 						Kill++;
 					}
 					i++;
 				}
-
 				if (Kill == Length) {
 					KolSheepsPlayer--;
 					i = x + 1;
-					while (PD[i][y] >= '2' || PD[i][y] == 'x') {
+					do {
 						i--;
 						PA[i][y - 1] = '~';
 						PA[i][y + 1] = '~';
 					}
+					while (PD[i][y] >= '1');
+					PA[i][y] = '~';
 					i = x - 1;
-					while (PD[i][y] >= '2' || PD[i][y] == 'x') {
+					do {
 						i++;
 						PA[i][y - 1] = '~';
 						PA[i][y + 1] = '~';
 					}
+					while (PD[i][y] >= '1');
+					PA[i][y] = '~';
 				}
 			}
-			else if (PD[x][y - 1] >= '2' || PD[x][y - 1] == 'x' || PD[x][y + 1] >= '2' || PD[x][y + 1] == 'x') {
+			else if (PD[x][y - 1] >= '1' || PD[x][y + 1] >= '1') {
 				i = x;
 				j = y;
-				while (PD[i][j] >= '2' || PD[i][j] == 'x') {
-					Length++;
-					if (PD[i][j] == 'x') {
+				while (PD[i][j] >= '1') {
+					if (PA[i][j] == 'x') {
 						Kill++;
 					}
 					j--;
 				}
 				j = y + 1;
-				while (PD[i][j] >= '2' || PD[i][j] == 'x') {
-					Length++;
-					if (PD[i][j] == 'x') {
+				while (PD[i][j] >= '1') {
+					if (PA[i][j] == 'x') {
 						Kill++;
 					}
 					i++;
@@ -85,17 +91,19 @@ void ShootInPlayer(ll x, ll y, char PD[100][100], char PA[100][100], bool bot = 
 					KolSheepsPlayer--;
 					i = x;
 					j = y + 1;
-					while (PD[i][j] >= '2' || PD[i][j] == 'x') {
+					do {
 						j--;
 						PA[i - 1][j] = '~';
 						PA[i + 1][j] = '~';
-					}
+					} while (PD[i][j] >= '1');
+					PA[i][j] = '~';
 					j = y - 1;
-					while (PD[i][j] >= '2' || PD[i][j] == 'x') {
+					do {
 						j++;
 						PA[i - 1][j] = '~';
 						PA[i + 1][j] = '~';
-					}
+					} while (PD[i][j] >= '1');
+					PA[i][j] = '~';
 				}
 			}
 		}
@@ -104,6 +112,7 @@ void ShootInPlayer(ll x, ll y, char PD[100][100], char PA[100][100], bool bot = 
 	else {
 		PA[x][y] = '~';
 	}
+	cout << Length << " " << Kill << endl;
 	if (bot == false) {
 		rep(i, 1, 22) {
 			rep(j, 1, 22) {
